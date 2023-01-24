@@ -1,38 +1,189 @@
-.App {
-  text-align: center;
+:root {
+  --blue-color: #022e61;
+  --button-color: blue;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  font-size: 62.5%;
 }
+/* ===================MAIN====================================== */
 
-.App-header {
-  background-color: #282c34;
+/* ===================INTRO SECTION====================================== */
+.intro-page {
   min-height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url(https://images.unsplash.com/photo-1566305977571-5666677c6e98?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=345&q=80);
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.intro-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.intro--title {
+  color: var(--blue-color);
+  font-size: max(6vw, 4.8rem);
+}
+.intro--description,
+.intro--button {
+  font-size: max(2vw, 2rem);
+  text-align: center;
+}
+
+.intro--description {
+  color: var(--blue-color);
+  margin-bottom: 4rem;
+  font-weight: 500;
+}
+.intro--button {
+  color: white;
+  padding: 1rem 4rem;
+  background-color: blue;
+  border-radius: 1.5rem;
+  font-weight: 600;
+}
+
+/* ===================MAINPAGE SECTION====================================== */
+.main-page-container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding-top: 3rem;
+  color: rgb(77, 75, 75);
+}
+.main-page {
+  padding-top: max(4vw, 2rem);
+}
+.main-page:first-child {
+  padding-top: 0;
+}
+.main-page--question {
+  font-size: max(1.5vw, 1.4rem);
+}
+
+.main-page--answers-ul {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  list-style: none;
+  padding: 2rem 0 2.5rem 0;
+}
+.main-page--answers-ul li {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  padding: 0.4rem 3rem;
+  border-radius: 1rem;
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.main-page--option {
+  font-size: max(1.2vw, 1rem);
+  font-weight: 500;
+  text-align: center;
+}
+
+.main-divider {
+  width: 100%;
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.main-page-button {
+  display: block;
+  margin: 4rem auto;
+  padding: 1rem 2rem;
+  font-size: max(1.2vw, 1.2rem);
+  border-radius: 0.5rem;
+  background-color: var(--button-color);
+  color: white;
+  font-weight: 500;
+  letter-spacing: 2px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+}
+
+.option-selected {
+  background-color: #004075;
+  border-color: #004075 !important;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.correct {
+  background-color: rgb(0, 123, 0) !important;
+  border-color: green !important;
+  color: white;
+}
+.wrong-answer {
+  background-color: rgb(184, 1, 1) !important;
+  border-color: rgb(184, 1, 1) !important;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.Results-info-h2 {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  font-size: max(2vw, 2rem);
+  text-align: center;
+}
+.quiz-page-title {
+  justify-self: center;
+  font-size: max(3vw, 2.4rem);
+  color: rgb(53, 52, 52);
+}
+.timer input {
+  border: none;
+  font-size: max(2.5vw, 2.4rem);
+  font-weight: 600;
+  color: rgb(184, 1, 1);
+  outline: none;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 1240px) {
+  .main-page--answers-ul li {
+    flex: 0 0 30%;
+    max-width: 300px;
   }
-  to {
-    transform: rotate(360deg);
+  .header-title {
+    flex-direction: column;
+  }
+  .timer input {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 740px) {
+  .main-page--answers-ul li {
+    flex: 0 0 20%;
+  }
+}
+@media only screen and (max-width: 740px) {
+  .main-page--answers-ul {
+    justify-content: center;
+  }
+  .main-page--answers-ul li {
+    width: 100%;
+    max-width: 200px;
   }
 }
