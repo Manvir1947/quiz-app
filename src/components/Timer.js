@@ -1,7 +1,8 @@
-import React from "react";
-
-export default function Timer(props) {
-  const { time, minutes, seconds } = props;
+import React, { useContext } from "react";
+import { Context } from "./context";
+export default function Timer() {
+  const value = useContext(Context);
+  const { time, minutes, seconds } = value;
   return (
     <div className="timer">
       <input

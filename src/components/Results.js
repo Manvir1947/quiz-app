@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "./context";
 
-export default function Results(props) {
-  const { totalTime, answersResult, minutes, seconds } = props;
+export default function Results() {
+  const value = useContext(Context);
+  const { totalTime, answersResult, minutes, seconds, name } = value;
+
   return (
     <h2 className="Results-info-h2">
       {answersResult.allCorrect
-        ? "Congo, your all answers are correct"
-        : `Your ${answersResult.correctScore} answer${
+        ? `Congo, ${name ? `Hi, ${name} y` : "Y"}our all answers are correct`
+        : `${name ? `Hi, ${name} y` : "y"}our ${
+            answersResult.correctScore
+          } answer${
             answersResult.correctScore > 1 ? "s are" : " is"
           } correct and 
           ${answersResult.inCorrectScore} ${

@@ -1,6 +1,7 @@
 :root {
   --blue-color: #022e61;
   --button-color: blue;
+  --hovering-color: rgb(70, 69, 69);
 }
 * {
   margin: 0;
@@ -9,11 +10,59 @@
 body {
   font-size: 62.5%;
 }
+html,
+body {
+  width: auto !important;
+  overflow-x: hidden !important;
+}
 /* ===================MAIN====================================== */
+body.modal-open {
+  overflow-y: hidden !important;
+}
+body {
+  position: relative;
+}
+.spinner-div {
+  position: absolute;
+  top: 0;
+  z-index: 50;
+}
+.loader-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  background: rgba(255, 255, 255, 0.868);
+  z-index: 1;
+}
+.button-spinner {
+  width: 30px;
+  height: 30px;
+}
+@keyframes spin-anim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #3d5af1 transparent #3d5af1 transparent;
+  border-radius: 50%;
+  animation: spin-anim 1.2s linear infinite;
+}
 
 /* ===================INTRO SECTION====================================== */
 .intro-page {
   min-height: 100vh;
+  overflow: hidden;
   background: linear-gradient(
       rgba(255, 255, 255, 0.6),
       rgba(255, 255, 255, 0.6)
@@ -22,6 +71,14 @@ body {
   object-fit: cover;
   background-repeat: no-repeat;
   background-size: 100% 100%;
+}
+.name {
+  display: flex;
+  justify-content: flex-end;
+  font-size: max(2.5vw, 2.4rem);
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: rgb(162, 162, 162);
 }
 .intro-container {
   position: absolute;
@@ -44,9 +101,11 @@ body {
 }
 
 .intro--description {
+  font-size: max(2vw, 1.2rem);
   color: var(--blue-color);
-  margin-bottom: 4rem;
   font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 .intro--button {
   color: white;
@@ -54,6 +113,18 @@ body {
   background-color: blue;
   border-radius: 1.5rem;
   font-weight: 600;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+.intro--button:hover {
+  background-color: var(--hovering-color);
+}
+.name-input {
+  margin-bottom: 3rem;
+  padding: 0.2rem 0.5rem;
+  font-size: max(1.5vw, 1.2rem);
+  color: inherit;
 }
 
 /* ===================MAINPAGE SECTION====================================== */
@@ -71,6 +142,7 @@ body {
 }
 .main-page--question {
   font-size: max(1.5vw, 1.4rem);
+  width: 100%;
 }
 
 .main-page--answers-ul {
@@ -92,13 +164,12 @@ body {
 }
 
 .main-page--option {
-  font-size: max(1.2vw, 1rem);
-  font-weight: 500;
+  font-size: max(1.2vw, 1.2rem);
+  font-weight: 600;
   text-align: center;
 }
 
 .main-divider {
-  width: 100%;
   height: 3px;
   background-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
@@ -110,12 +181,17 @@ body {
   padding: 1rem 2rem;
   font-size: max(1.2vw, 1.2rem);
   border-radius: 0.5rem;
-  background-color: var(--button-color);
+  background-color: var(--blue-color);
   color: white;
   font-weight: 500;
   letter-spacing: 2px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+.main-page-button:hover {
+  background-color: var(--hovering-color);
 }
 
 .option-selected {
@@ -143,9 +219,8 @@ body {
   text-align: center;
 }
 .quiz-page-title {
-  justify-self: center;
   font-size: max(3vw, 2.4rem);
-  color: rgb(53, 52, 52);
+  color: var(--blue-color);
 }
 .timer input {
   border: none;
@@ -156,9 +231,87 @@ body {
 }
 
 .header-title {
+  width: 100%;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+}
+
+/* --------------------HERO SECTION-------- */
+
+.hero-pop-ups-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.93);
+  color: rgb(213, 213, 213);
+  overflow-y: scroll;
+}
+.main-pop-ups-div {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  max-width: 1200px;
+  width: 100%;
+  transform: translateX(-50%);
+  top: 5%;
+  left: 50%;
+  padding-bottom: 10rem;
+}
+.pop-ups-result {
+  font-size: max(2vw, 2rem);
+}
+
+.user--tr-data > * {
+  font-size: max(1.4vw, 1.2rem);
+  font-weight: 600;
+}
+.current-user--tr-data {
+  font-size: max(1.6vw, 1.4rem);
+  font-weight: 700;
+}
+.pop-ups-results-headings {
+  font-size: max(1.6vw, 1rem);
+}
+
+.pop-ups-results-table {
+  border-collapse: separate;
+  border-spacing: max(4vw, 1rem);
+  width: 100%;
+}
+
+.pop-ups-results-table td {
+  text-align: center;
+}
+.pop-ups-results-buttons-div {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+.pop-ups-results-buttons-div button {
+  padding: 0.5rem 1rem;
+  font-size: max(1.2vw, 1.2rem);
+  border: none;
+  border-radius: 1rem;
+  color: rgb(1, 1, 105);
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pop-ups-results-name {
+  font-weight: 700;
+}
+.pop-ups-results-incorrect {
+  color: red;
+}
+.pop-ups-results-correct {
+  color: green;
 }
 
 @media only screen and (max-width: 1240px) {
@@ -166,24 +319,24 @@ body {
     flex: 0 0 30%;
     max-width: 300px;
   }
-  .header-title {
-    flex-direction: column;
-  }
-  .timer input {
-    text-align: center;
+  .intro--title {
+    justify-content: flex-end !important;
   }
 }
 @media only screen and (max-width: 740px) {
-  .main-page--answers-ul li {
-    flex: 0 0 20%;
+  .main-page-container {
+    width: 90%;
   }
-}
-@media only screen and (max-width: 740px) {
+
   .main-page--answers-ul {
+    flex: 0 0 20%;
     justify-content: center;
   }
   .main-page--answers-ul li {
     width: 100%;
     max-width: 200px;
+  }
+  .name {
+    justify-content: flex-start !important;
   }
 }
